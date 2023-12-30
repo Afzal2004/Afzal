@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_TASKS 100
+
+char tasks[MAX_TASKS][100];
+int numTasks = 0;
+
+void addTask() {
+    char task[100];
+    printf("Enter a task: ");
+    fgets(task, sizeof(task), stdin);
+    strcpy(tasks[numTasks], task);
+    numTasks++;
+    printf("Task added!\n");
+}
+
+void deleteTask() {
+    int taskIndex;
+    printf("Enter the index of the task to delete: ");
+    scanf("%d", &taskIndex);
+    getchar(); 
+
+    if (taskIndex >= 0 && taskIndex < numTasks) {
+        for (int i = taskIndex; i < numTasks - 1; i++) {
+            strcpy(tasks[i], tasks[i + 1]);
+        }
+        numTasks--;
+        printf("Task deleted!\n");
+    } else {
+        printf("Invalid index!\n");
+    }
+}
+
+void viewTasks() {
+    if (numTasks == 0) {
+        printf("No tasks found.\n");
+    } else {
+        printf("Tasks:\n");
+        for (int i = 0; i < numTasks; i++) {
+            printf("%d. %s", i, tasks[i]);
+        }
+    }
+}
+
+int main() {
+    int choice;
+
+    while (1) {
+        printf("\n--- To-Do List Menu ---\n");
+        printf("1. Add Task\n");
+        printf("2. Delete Task\n");
+        printf("3. View Tasks\n");
+        printf("4. Exit\n");
+
+        printf("\nEnter your choice : ");
+        scanf("%d", &choice);
+        getchar(); 
+        switch (choice) {
+            case 1:
+                addTask();
+                break;
+            case 2:
+                deleteTask();
+                break;
+            case 3:
+                viewTasks();
+                break;
+            case 4:
+                printf("Thank you!\n");
+                exit(0);
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
+
+    return 0;
+}
