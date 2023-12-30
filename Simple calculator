@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+
+  char c;
+  double a,b;
+  printf("SIMPLE CALCULATOR\n ");
+  printf("operations:\n1.addition\n2.subtraction\n3.multiplication\n4.division\n");
+  printf("Enter your choice:");
+  scanf("%d", &c);
+  printf("Enter two operands: ");
+  scanf("%lf %lf", &a, &b);
+
+  switch (c) {
+    case 1:
+      printf("%.1lf+%.lf=%1.lf", a, b, a+b);
+      break;
+    case 2:
+      printf("%.1lf - %.1lf = %.1lf", a, b, a -b);
+      break;
+    case 3:
+      printf("%.1lf * %.1lf = %.1lf", a, b, a * b);
+      break;
+    case 4:
+      printf("%.1lf / %.1lf = %.1lf", a, b, a / b);
+      break;
+    // operator doesn't match any case constant
+    default:
+      printf("Error! Invalid Operation");
+  }
+
+  return 0;
+}
